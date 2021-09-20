@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get '/users/', to: 'users#index'
-  get '/users/:id', to: 'users#show'
+  get '/users/', to: 'user#index'
+  get '/users/:id', to: 'user#show'
   get '/register/',  to: 'register#index'
   # get {url address}, to: {controller name}#{controller function}
   
