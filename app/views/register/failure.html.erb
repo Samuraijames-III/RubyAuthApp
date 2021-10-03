@@ -11,15 +11,8 @@
   </head>
 
   <body>
-    <h1>create a user</h1>
+    <h1>sorry, didnt input data, aint going to work incel.</h1>
 
-    <%= form_with url: register_url, local: true, method: :post do |form| %>
-      <%= form.label :fname, "First name" %>
-      <%= form.text_field :fname, {:required => true } %>
-      <%= form.label :lname, "Last name" %>
-      <%= form.text_field :lname, {:required => true }%>
-      <%= form.submit "Submit incels" %>
-    <% end %>
     <%= yield %>
   </body>
 </html>
