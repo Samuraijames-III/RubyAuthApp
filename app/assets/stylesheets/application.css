@@ -13,3 +13,40 @@
  *= require_tree .
  *= require_self
  */
+html,
+body {
+  height: 100%;
+  
+}
+/*
+  overide container width
+*/
+@media (min-width: 1400px) {
+  .container, 
+  .container-lg, 
+  .container-md, 
+  .container-sm, 
+  .container-xl, 
+  .container-xxl {
+    max-width: 800px !important;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+}
+
+
+
+

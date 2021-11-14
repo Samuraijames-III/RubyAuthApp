@@ -11,5 +11,6 @@
     "webpack-cli": "^3.3.12",
     "yarn": "^1.22.11"
   },
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "devDependencies": {}
 }

@@ -12,6 +12,14 @@ class UserController < ActionController::Base
          render json: User.find(params[:id].to_i)
       else 
          render plain: "that user doesnt exist: #{params[:id]}"
-      end 
+      end
+   end
+
+   def validate
+      puts params
+      username = params[:username]
+      exists = User.exists?(username: username)
+      # puts exists
+      render json: {"exists": exists, "username": username}
    end
 end
