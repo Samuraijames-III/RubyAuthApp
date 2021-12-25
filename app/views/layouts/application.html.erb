@@ -1,0 +1,9 @@
+<html>
+<head>
+  <title><%= @page_title or "Auth App" %></title>
+  <%= render :partial => "shared/htmlHead" %>
+</head>
+<body class="my-5">
+  <div id="content"><%= content_for?(:content) ? yield(:content) : yield %></div>
+</body>
+</html>
