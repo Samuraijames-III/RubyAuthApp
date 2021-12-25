@@ -1,15 +1,31 @@
 class RegisterController < ActionController::Base
-   def createuser
+  def createuser
     respond_to do |format|
+      # Set to true if you want to display an error
+      formError = false
+
+      # If the first and last name are filled in, render success. Otherwise we will set flash messages that will show on the index /register page
       if params[:fname] == "" || params[:lname] == ""
         #render the failure page
         format.html { render :failure, locals: {} }
-      else
-        if User.exists?(username: params[:username])
-          format.html {render :message, locals: {message: "that user name is already taken, try again bitch"}}
-        end 
+      elsif User.exists?(username: params[:username])
+          formError = true
+          flash[:danger] = "sername '#{params[:username]}' has been taken, try another username, thanks bitch"
 
-        # create a new user 
+          # Psuedocode - how flash message data is stored
+          # var flash = {
+          #   'danger': 'User not found.'
+          #   'info': 'User not found.'
+          #   'warning': 'User not found.'
+          #   'danger': 'User not found.'
+          # }
+      end
+      
+      if formError
+        # Rerender the register form page with flash messages added
+        format.html { render :index }
+      else 
+        # create a new user
         user=User.create(
           first_name: params[:fname], 
           last_name: params[:lname],
@@ -29,5 +45,5 @@ class RegisterController < ActionController::Base
         }
       end
     end
-   end
+  end
 end
