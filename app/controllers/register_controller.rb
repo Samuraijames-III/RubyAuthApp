@@ -1,4 +1,8 @@
 class RegisterController < ActionController::Base
+  def index 
+    @page_title = "Register your account"
+  end
+
   def createuser
     respond_to do |format|
       # Set to true if you want to display an error
@@ -10,7 +14,7 @@ class RegisterController < ActionController::Base
         format.html { render :failure, locals: {} }
       elsif User.exists?(username: params[:username])
           formError = true
-          flash[:danger] = "sername '#{params[:username]}' has been taken, try another username, thanks bitch"
+          flash[:danger] = "Username '#{params[:username]}' has been taken, try another username, thanks bitch"
 
           # Psuedocode - how flash message data is stored
           # var flash = {
@@ -23,6 +27,7 @@ class RegisterController < ActionController::Base
       
       if formError
         # Rerender the register form page with flash messages added
+        @page_title = "Account creation failed"
         format.html { render :index }
       else 
         # create a new user
@@ -33,6 +38,7 @@ class RegisterController < ActionController::Base
           password: params[:password]
         )
         # renders the success page
+        @page_title = "Account creation success"
         format.html {
           render :success, 
           locals: {

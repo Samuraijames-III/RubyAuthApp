@@ -1,35 +1,24 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Account creation success</title>
-    <%= render :partial => "shared/htmlHead" %>
-  </head>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mb-3">User account has been saved</h1>
 
-  <body class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <h1 class="mb-3">User account has been saved</h1>
-
-          <table class="table table-striped">
-            <tr>
-              <td>Username</td>
-              <td>First</td>
-              <td>Last</td>
-              <td>ID</td>
-            </tr>
-            
-            <tr>
-              <td><%= username %></td>
-              <td><%= fname %></td>
-              <td><%= lname %></td>
-              <td><%= id %></td>
-            </tr>
-          </table>
-        </div>
-      </div>
+      <table class="table table-striped">
+        <tr>
+          <td>Username</td>
+          <td>First</td>
+          <td>Last</td>
+          <td>ID</td>
+        </tr>
+        
+        <tr>
+          <td><%= username %></td>
+          <td><%= fname %></td>
+          <td><%= lname %></td>
+          <td><%= id %></td>
+        </tr>
+      </table>
     </div>
-
-    <%= yield %>
-  </body>
-</html>
+  </div>
+</div>
+<%= render template: "layouts/application" %>

@@ -1,52 +1,18 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Create an account</title>
 
-    <%= render :partial => "shared/htmlHead" %>
-  </head>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="mb-3 h1">Create a user</h1>
 
-  <body class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <h1 class="mb-3 h1">Create a user</h1>
+        <% flash.each do |type, msg| %>
+          <div class="alert alert-<%= type %>">
+            <%= msg %>
+          </div>
+        <% end %>
 
-          <% flash.each do |type, msg| %>
-            <div class="alert alert-<%= type %>">
-              <%= msg %>
-            </div>
-          <% end %>
-
-          <%= form_with url: register_url, local: true, id: 'register_form', method: :post do |form| %>
-            <div class="row g-3 mb-3">
-              <div class="col-12 col-lg-6">
-                <%= form.label :fname, "First name", {:class => 'form-label'}  %>
-                <%= form.text_field :fname, {:required => true, :class => 'form-control' }  %>
-              </div>
-              <div class="col-12 col-lg-6">
-                <%= form.label :lname, "Last name", { :class => 'form-label' }  %>
-                <%= form.text_field :lname, {:required => true, :class => 'form-control' }%>
-              </div>
-            </div >
-            <div class="row g-3 mb-3">
-              <div class="col-12 col-lg-6">
-                <%= form.label :username, "User name", { :class => 'form-label' }  %>
-                <%= form.text_field :username, {:required => true, :class => 'form-control' }%>
-              </div>
-              <div class="col-12 col-lg-6">
-                <%= form.label :password, "Password", { :class => 'form-label' }  %>
-                <%= form.text_field :password, {:required => true, :class => 'form-control' }%>
-              </div>
-            </div>
-              
-            <%= form.submit "Submit", {:class => 'btn btn-primary'} %>
-            <%= form.hidden_field :action_url, value: checkuser_url %>
-        </div>
+        <%= render :partial => "form" %>
       </div>
     </div>
+  </div>
+  <%= render template: "layouts/application" %>
     
-    <% end %>
-    <%= yield %>
-  </body>
-</html>
