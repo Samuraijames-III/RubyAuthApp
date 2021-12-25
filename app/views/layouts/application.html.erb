@@ -3,7 +3,23 @@
   <title><%= @page_title or "Auth App" %></title>
   <%= render :partial => "shared/htmlHead" %>
 </head>
-<body class="my-5">
-  <div id="content"><%= content_for?(:content) ? yield(:content) : yield %></div>
+<body>
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">AuthApp</a>
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="<%= register_url %>">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="<%= login_url %>">Login</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="content" class="my-5">
+    <%= content_for?(:content) ? yield(:content) : yield %>
+  </div>
 </body>
 </html>
