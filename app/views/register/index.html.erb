@@ -2,15 +2,15 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h1 class="mb-3 h1">Create a user</h1>
-
-        <% flash.each do |type, msg| %>
-          <div class="alert alert-<%= type %>">
-            <%= msg %>
-          </div>
-        <% end %>
-
-        <%= render :partial => "form" %>
+        <div class="w-50 mx-auto">
+          <h1 class="mb-3 h1">Create a user</h1>
+          <% flash.each do |type, msg| %>
+            <div class="alert alert-<%= type %>">
+              <%= msg %>
+            </div>
+          <% end %>
+          <%= render :partial => "form" %>
+        </div>
       </div>
     </div>
   </div>
