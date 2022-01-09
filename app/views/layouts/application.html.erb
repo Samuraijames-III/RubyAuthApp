@@ -9,13 +9,13 @@
       <a class="navbar-brand" href="/">AuthApp</a>
       <ul class="nav">
         <% if !current_user %>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="<%= register_url %>">Register</a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="<%= register_url %>">Register</a>
+          </li>
 
-        <li class="nav-item">
-          <a class="nav-link text-white" href="<%= login_url %>">Login</a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="<%= login_url %>">Login</a>
+          </li>
           <% else  %>
           <li class="nav-item">
             <a class="nav-link disabled" href="#"><%= current_user.first_name %></a>
@@ -28,7 +28,11 @@
       </ul>
     </div>
   </nav>
-
+  <% flash.each do |type, msg| %>
+      <div class="alert alert-<%= type %>">
+        <%= msg %>
+      </div>
+    <% end %>
   <div id="content" class="my-5">
     <%= content_for?(:content) ? yield(:content) : yield %>
   </div>
