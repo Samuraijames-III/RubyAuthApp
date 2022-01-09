@@ -2,10 +2,11 @@ Rails.application.routes.draw do
   get '/users/', to: 'user#index'
   get '/users/:id', to: 'user#show'
   get '/register/',  to: 'register#index'
-  get '/login/', to: 'login#show'
   get '/checkuser/', to: 'user#validate'
-  post '/login/', to: 'login#login'
   post '/register/', to: 'register#createuser'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
   get '/', to: 'home#index' 
   # get {url address}, to: {controller name}#{controller function}
   
