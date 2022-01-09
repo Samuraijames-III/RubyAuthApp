@@ -1,6 +1,6 @@
 class RegisterController < ActionController::Base
   def index 
-    @page_title = "Register your account"
+    @page_title = "Register account"
   end
 
   def createuser
