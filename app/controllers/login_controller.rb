@@ -1,4 +1,4 @@
-class LoginController < ActionController::Base
+class LoginController < ApplicationController
    
    def show
       @page_title = "Login page"

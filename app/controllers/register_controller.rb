@@ -1,4 +1,4 @@
-class RegisterController < ActionController::Base
+class RegisterController < ApplicationController
   def index 
     @page_title = "Register account"
   end

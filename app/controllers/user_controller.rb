@@ -1,5 +1,5 @@
-class UserController < ActionController::Base
-   
+class UserController < ApplicationController
+
    def index
     # rendering json on page: user data
       render json: User.all
