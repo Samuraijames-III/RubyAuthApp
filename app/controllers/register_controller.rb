@@ -31,12 +31,15 @@ class RegisterController < ApplicationController
         format.html { render :index }
       else 
         # create a new user
-        user=User.create(
+        user=User.new(
           first_name: params[:fname], 
           last_name: params[:lname],
           username: params[:username],
-          password: params[:password]
+          # password: params[:password]
         )
+        user.password = params[:password]
+        user.save
+
         # renders the success page
         @page_title = "Account creation success"
         format.html {
