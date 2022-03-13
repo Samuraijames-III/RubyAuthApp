@@ -32,7 +32,7 @@ class RegisterController < ApplicationController
       else 
         # create a new user
         user=User.new(
-          first_name: params[:fname], 
+          first_name: params[:fname],
           last_name: params[:lname],
           username: params[:username],
           # password: params[:password]
