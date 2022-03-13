@@ -1,8 +1,10 @@
 <html>
+
 <head>
   <title><%= @page_title or "Auth App" %></title>
   <%= render :partial => "shared/htmlHead" %>
 </head>
+
 <body>
   <nav class="navbar navbar-dark bg-dark">
     <div class="container">
@@ -17,6 +19,9 @@
             <a class="nav-link text-white" href="<%= login_url %>">Login</a>
           </li>
           <% else  %>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="<%= dashboard_url %>">Dashboard</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="#"><%= current_user.first_name %></a>
           </li>
@@ -37,4 +42,5 @@
     <%= content_for?(:content) ? yield(:content) : yield %>
   </div>
 </body>
+
 </html>
