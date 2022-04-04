@@ -2,9 +2,39 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-      welcome to user home page
+      <h1 class=display-4>Welcome to your home page </h1>
       </div>
     </div>
   </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="jumbotron">
+          <p class="lead">needing to change your password - <strong class="text-success">reset your password easy</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <form class="row g-3">
+        <div class="col-auto">
+          <label for="username" class="visually-hidden"></label>
+          <input type="text" readonly class="form-control-plaintext" id="username" value=" <%= current_user&.username || "@Helloguy123" %>">
+          <i class="fa-solid fa-user-check"></i>
+        </div>
+        <div class="col-auto">
+          <label for="password" class="visually-hidden">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Password">
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
+        </div>
+      </form>
+      
 <% end %>
+
 <%= render template: "layouts/application" %>
