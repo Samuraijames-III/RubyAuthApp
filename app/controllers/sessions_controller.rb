@@ -5,20 +5,21 @@ class SessionsController < ApplicationController
   end
 
   def create
-  user = User.find_by(username: params[:username])
-  if user && user.authenticate(params[:password])
-   session[:user_id] = user.id
-   flash[:success] = 'Successfully Logged In'
-   redirect_to '/dashboard'
-  else
-   flash[:warning] = 'Invalid Username or Password'
-   redirect_to '/login'
+    user = User.find_by(username: params[:username])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      helpers.flash_message :success, 'Successfully Logged In'
+      helpers.flash_message :success, 'is this even working?!'
+      redirect_to '/dashboard'
+    else
+      helpers.flash_message :warning, 'Invalid Username or Password'
+      redirect_to '/login'
+    end
   end
- end
   
  def destroy
    session[:user_id] = nil
-   flash[:success] = 'Successfully Logged Out'
+   helpers.flash_message :warning, 'Successfully Logged Out'
    redirect_to '/login'
   end
  end
