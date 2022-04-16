@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   get '/users/', to: 'user#index'
   get '/users/:id', to: 'user#show'
   get '/register/',  to: 'register#index'
@@ -7,8 +8,10 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
   get '/', to: 'home#index'
   get '/dashboard', to: 'dashboard#index'
-
-  post '/register/', to: 'register#createuser'  
+  get '/passwordchangesuccess', to: 'passwords#passwordchanged'
+  
+  post '/changepassword', to: 'passwords#update'
+  post '/register', to: 'register#createuser'  
   post '/login', to: 'sessions#create'
   
   # get {url address}, to: {controller name}#{controller function}
