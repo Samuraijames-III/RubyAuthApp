@@ -1,8 +1,9 @@
 <% content_for :content do %>
+  
   <div class="container">
     <div class="row">
       <div class="col-12">
-      <h1 class=display-4>Welcome to your home page </h1>
+        <h1 class=display-4>Welcome to your home page </h1>
       </div>
     </div>
   </div>
@@ -20,21 +21,46 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <form class="row g-3">
-        <div class="col-auto">
-          <label for="username" class="visually-hidden"></label>
-          <input type="text" readonly class="form-control-plaintext" id="username" value=" <%= current_user&.username || "@Helloguy123" %>">
-          <i class="fa-solid fa-user-check"></i>
-        </div>
-        <div class="col-auto">
-          <label for="password" class="visually-hidden">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Password">
-        </div>
-        <div class="col-auto">
-          <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
-        </div>
-      </form>
-      
+
+        <%= form_with url: changepassword_url, local: true, id: 'changepassword_form', class: 'row align-items-start g-3', method: :post do |form| %>
+          
+          <div class="col-auto">
+            <div class="d-flex flex-row align-items-center">
+              <i class="fa-solid fa-head-side-mask text-primary px-1"></i>
+              <label for="username" class="visually-hidden"></label>
+              <input type="text" readonly class="form-control-plaintext ml-3" id="username" value=" <%= current_user&.username || "" %>">
+            </div>
+            <div class="d-flex flex-row form-row align-items-center">
+              <i class="fa-solid fa-key text-primary px-1"></i>
+              <label for="password" class="visually-hidden">Password</label>
+              <%= form.password_field :password, {:required => true, :class => 'form-control', :placeholder => 'Password'} %>
+            </div>
+          </div>
+          
+          <div class="col-auto">
+            
+            <div class="d-flex flex-row form-row align-items-center">
+                <i class="fa-solid fa-shield-halved text-danger px-1"></i>
+                <label for="new_password" class="visually-hidden">New Password</label>
+                <%= form.password_field :new_password, {:required => true, :class => 'form-control', :placeholder => 'New Password'} %>
+            </div>
+            <div class="d-flex flex-row form-row align-items-center mt-1">
+                <i class="fa-solid fa-person-through-window text-danger px-1"></i>
+                <label for="new_password_confirm" class="visually-hidden">Confirm New Password</label>
+                <%# <%= form.password_field :new_password_confirm, {:required => true, :class => 'form-control', :placeholder => 'Confirm Password'} %> %>
+            </div>
+          </div>
+          
+          <div class="col-auto">
+            <%= form.submit "Confirm identity", {:class => 'btn btn-primary'} %>
+          </div>
+
+         <% end %>
+
+      </div>
+    </div>
+  </div>
+
 <% end %>
 
 <%= render template: "layouts/application" %>
