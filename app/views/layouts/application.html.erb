@@ -34,17 +34,24 @@
     </div>
 
   </nav>
-  <%= flash.inspect %>
-  <% flash.each do |type, messages| %>
-    <% messages.each do |msg| %>
-      <div class="alert alert-<%= type %>">
-        <%= msg %>
-      </div>
+
+  <div class="container">
+    <% flash.each do |type, msg| %>
+      <% msg.each do |m| %>
+        <div class="alert alert-<%= type.to_s %> ">
+          <div class="row">
+            <div class="col-12 col-sm-8 col-md-6 mx-auto">
+              <%= m %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
   <div id="content" class="my-5">
     <%= content_for?(:content) ? yield(:content) : yield %>
   </div>
+  
 
 </body>
 
