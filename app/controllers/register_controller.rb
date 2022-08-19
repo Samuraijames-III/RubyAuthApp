@@ -14,7 +14,7 @@ class RegisterController < ApplicationController
         format.html { render :failure, locals: {} }
       elsif User.exists?(username: params[:username])
           formError = true
-          helpers.flash_message :danger, "Username '#{params[:username]}' has been taken, try another username, thanks bitch"
+          helpers.flash_message :warning, "Username '#{params[:username]}' has been taken, try another username"
 
           # Psuedocode - how flash message data is stored
           # var flash = {
