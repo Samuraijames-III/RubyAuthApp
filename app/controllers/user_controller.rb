@@ -18,9 +18,8 @@ class UserController < ApplicationController
       #render json: userdata[:users].select {|user| user.get_id() == params[:id].to_i}
       if User.exists?(params[:id])
          render json: User.find(params[:id].to_i)
-      else 
-         render plain: "that user doesnt exist: #{params[:id]}"
       end
+      
    end
 
    def validate
