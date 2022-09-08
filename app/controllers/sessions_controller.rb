@@ -8,17 +8,17 @@ class SessionsController < ApplicationController
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      helpers.flash_message :success, 'Successfully Logged In'
+      helpers.flash_message :info, 'Login successful'
       redirect_to '/dashboard'
     else
-      helpers.flash_message :notice, 'Invalid Username or Password'
+      helpers.flash_message :dark, 'Account does not exist, please register'
       redirect_to '/login'
     end
   end
   
  def destroy
    session[:user_id] = nil
-   helpers.flash_message :info, 'Successfully Logged Out'
+   helpers.flash_message :info, 'Logout successful '
    redirect_to '/login'
   end
  end
