@@ -4,34 +4,30 @@ class PasswordsController < ApplicationController
     include BCrypt
 
     def update
-        user = current_user;
-        
-        
-        #if new password is the same as new password, doesnt not save
-        if  Password.new(current_user.password) == params[:new_password]
-            helpers.flash_message :danger, "new password can't match current password, please try again"
-            redirect_to '/dashboard'
+        user = current_user
+        failed = false;
+    
+        #check if this is the currently logged in user
+        if  !user.authenticate(params[:password])
+            helpers.flash_message :danger, "current password doesnt match, please try again #{user.authenticate(params[:password])}"
+            failed = true;
         end
         
         #if new password doesnt match confirm password
         if  params[:new_password] != params[:new_password_confirm]
-            helpers.flash_message :danger, "password, password confirm needs to match, please try again"
-            redirect_to '/dashboard' 
+            helpers.flash_message :danger, "password confirm needs to match, please try again"
+            failed = true;
+        elsif user.authenticate(params[:new_password])
+            helpers.flash_message :danger, "need to enter a new password, please try again"
+            failed = true;
         end
         
-        #trying to update password, with existing password incorrect in first field.
-        if  current_user.password != Password.new(current_user.password)
-            helpers.flash_message :danger, "existing password different from original, please try again"
-            redirect_to '/dashboard' && return
+        if failed
+            redirect_to '/dashboard'
+        else
+            user.password = params[:new_password_confirm];
+            user.save
+            redirect_to '/passwordchangesuccess'
         end
-        
-
     end
 end
-    
-        #  if  @user.password = params[:new_password_cofirm]
-        #      @user.save!
-        #      redirect_to '/passwordchangesuccess'
-        #  end
-
-        # you need to fix the double redirect error, by checking how rails is redirecting the error message!
