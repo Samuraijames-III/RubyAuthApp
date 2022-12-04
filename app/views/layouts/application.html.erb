@@ -18,7 +18,7 @@
           <li class="nav-item">
             <a class="nav-link text-white" href="<%= login_url %>">Login</a>
           </li>
-          <% else  %>
+          <% else %>
           <li class="nav-item">
             <a class="nav-link text-white" href="<%= dashboard_url %>">Dashboard</a>
           </li>
@@ -32,15 +32,27 @@
       
       </ul>
     </div>
+
   </nav>
-  <% flash.each do |type, msg| %>
-      <div class="alert alert-<%= type %>">
-        <%= msg %>
-      </div>
+
+  <div class="container">
+    <% flash.each do |type, msg| %>
+      <% msg.each do |m| %>
+        <div class="alert alert-<%= type.to_s %> ">
+          <div class="row">
+            <div class="col-12 col-sm-8 col-md-6 mx-auto">
+              <%= m %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
+  </div>
   <div id="content" class="my-5">
     <%= content_for?(:content) ? yield(:content) : yield %>
   </div>
+  
+
 </body>
 
 </html>

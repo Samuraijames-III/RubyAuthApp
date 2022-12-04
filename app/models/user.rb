@@ -2,17 +2,15 @@ require 'bcrypt'
 
 class User < ApplicationRecord
   include BCrypt
-
   # validates :email, presence: true
   # validates :email, uniqueness: true
   # validates :email, format: {with: /\w{2,}\@\w+\.\w{2,3}/, message: "please enter a valid email"  }
   validates :username, presence: true
+  validates :password, presence: true
   validates :username, uniqueness: true
-  validates :username, length: { minimum: 2 } 
-  
-  def has_secure_password
-  
-  end
+  validates :password, uniqueness: true
+  validates :username, length: { minimum: 2 }
+  validates :password, length: { minimum: 2 } 
 
   def authenticate(_password)
    return password == _password
