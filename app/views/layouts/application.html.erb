@@ -1,16 +1,58 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <title>AuthApp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title><%= @page_title or "Auth App" %></title>
+  <%= render :partial => "shared/htmlHead" %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/">AuthApp</a>
+      <ul class="nav">
+        <% if !current_user %>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="<%= register_url %>">Register</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-white" href="<%= login_url %>">Login</a>
+          </li>
+          <% else %>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="<%= dashboard_url %>">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#"><%= current_user.first_name %></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/logout">Log out</a>
+          </li>
+        <% end %>
+      
+      </ul>
+    </div>
+
+  </nav>
+
+  <div class="container">
+    <% flash.each do |type, msg| %>
+      <% msg.each do |m| %>
+        <div class="alert alert-<%= type.to_s %> ">
+          <div class="row">
+            <div class="col-12 col-sm-8 col-md-6 mx-auto">
+              <%= m %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div id="content" class="my-5">
+    <%= content_for?(:content) ? yield(:content) : yield %>
+  </div>
+  
+
+</body>
+
 </html>

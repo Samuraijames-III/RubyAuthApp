@@ -1,0 +1,25 @@
+<%= form_with url: register_url, local: true, id: 'register_form', method: :post do |form| %>
+  <div class="row g-3 mb-3">
+    <div class="col-12">
+      <%= form.label :fname, "First name", {:class => 'form-label'}  %>
+      <%= form.text_field :fname, {:required => true, :class => 'form-control' }  %>
+    </div>
+    <div class="col-12">
+      <%= form.label :lname, "Last name", { :class => 'form-label' }  %>
+      <%= form.text_field :lname, {:required => true, :class => 'form-control' }%>
+    </div>
+  </div >
+  <div class="row g-3 mb-3">
+    <div class="col-12">
+      <%= form.label :username, "User name", { :class => 'form-label' }  %>
+      <%= form.text_field :username, {:required => true, :class => 'form-control' }%>
+    </div>
+    <div class="col-12">
+      <%= form.label :password, "Password", { :class => 'form-label' }  %>
+      <%= form.text_field :password, {:required => true, :class => 'form-control' }%>
+    </div>
+  </div>
+    
+  <%= form.submit "Submit", {:class => 'btn btn-primary'} %>
+  <%= form.hidden_field :action_url, value: checkuser_url %>
+  <% end %>
